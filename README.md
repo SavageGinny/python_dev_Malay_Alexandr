@@ -71,7 +71,7 @@ GET http://127.0.0.1:8000/api/comments?login=<userloggin>
 GET http://127.0.0.1:8000/api/general?login=<userloggin>
 ```
 для получения общей информации о действиях пользователя
-Вместо <userloggin> пишите логин пользователя, которого вы ищете. Например user1: 
+Вместо `<userloggin>` пишите логин пользователя, которого вы ищете. Например user1: 
 
 ```
 GET http://127.0.0.1:8000/api/general?login=user1
