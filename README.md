@@ -33,7 +33,7 @@ pip install django djangorestframework django-crispy-forms crispy-bootstrap5 dja
 ## Если какие-то библиотеки не установились, обновите pip:
 
 ```
-python.exe -m pip install pip  --upgrade
+python.exe -m pip install pip --upgrade
 ```
 
 # Инструкция по запуску проекта
