@@ -133,4 +133,4 @@ http://127.0.0.1:8000/api/general?login=<userloggin>
 
 - Django Rest Framework - дополнение к Django, необходимый для создания API.
 
-Остальные библиотеки (django-crispy-forms, crispy-bootstrap5, django-select2) использовались для создания формы ввода|выбора логина юзера на главной странице
+- Остальные библиотеки (django-crispy-forms, crispy-bootstrap5, django-select2) использовались для создания формы ввода|выбора логина юзера на главной странице
