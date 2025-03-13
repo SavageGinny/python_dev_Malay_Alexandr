@@ -1,3 +1,5 @@
+from django.db.models import Model
+
 class BlogsDBRouter:
     """
     Маршрутизатор для базы данных 'blogs_db'.
@@ -24,7 +26,7 @@ class BlogsDBRouter:
             Возвращает False, что запрещает миграции для базы данных 'blogs_db'.
     """
 
-    def db_for_read(self, model, **hints):
+    def db_for_read(self, model: type[Model], **hints) -> str | None:
         """
         Определяет, какую базу данных использовать для операций чтения.
 
@@ -39,7 +41,7 @@ class BlogsDBRouter:
             return 'blogs_db'
         return None
 
-    def db_for_write(self, model, **hints):
+    def db_for_write(self, model: type[Model], **hints) -> str | None:
         """
         Определяет, какую базу данных использовать для операций записи.
 
@@ -54,7 +56,7 @@ class BlogsDBRouter:
             return 'blogs_db'
         return None
 
-    def allow_relation(self, obj1, obj2, **hints):
+    def allow_relation(self, obj1: type[Model], obj2: type[Model], **hints) -> None:
         """
         Определяет, разрешены ли отношения между моделями из разных баз данных.
 
@@ -68,7 +70,7 @@ class BlogsDBRouter:
         """
         return None
 
-    def allow_migrate(self, db, app_label, model_name=None, **hints):
+    def allow_migrate(self, db: str, app_label: str, model_name: str | None = None, **hints) -> bool | None:
         """
         Определяет, разрешена ли миграция для приложения 'blogs' в базе данных 'blogs_db'.
 
@@ -111,7 +113,7 @@ class LogsDBRouter:
             Возвращает False, что запрещает миграции для базы данных 'logs_db'.
     """
 
-    def db_for_read(self, model, **hints):
+    def db_for_read(self, model: type[Model], **hints) -> str | None:
         """
         Определяет, какую базу данных использовать для операций чтения.
 
@@ -126,7 +128,7 @@ class LogsDBRouter:
             return 'logs_db'
         return None
 
-    def db_for_write(self, model, **hints):
+    def db_for_write(self, model: type[Model], **hints) -> str | None:
         """
         Определяет, какую базу данных использовать для операций записи.
 
@@ -141,7 +143,7 @@ class LogsDBRouter:
             return 'logs_db'
         return None
 
-    def allow_relation(self, obj1, obj2, **hints):
+    def allow_relation(self, obj1: type[Model], obj2: type[Model], **hints) -> None:
         """
         Определяет, разрешены ли отношения между моделями из разных баз данных.
 
@@ -155,7 +157,7 @@ class LogsDBRouter:
         """
         return None
 
-    def allow_migrate(self, db, app_label, model_name=None, **hints):
+    def allow_migrate(self, db: str, app_label: str, model_name: str | None = None, **hints) -> bool | None :
         """
         Определяет, разрешена ли миграция для приложения 'logs' в базе данных 'logs_db'.
 

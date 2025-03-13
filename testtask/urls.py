@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from UserActions.views import *
+from UserActions.views import user_data_view, comments, general, download_csv
 
 urlpatterns = [
     path('', user_data_view),

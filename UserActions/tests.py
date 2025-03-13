@@ -19,7 +19,7 @@ class CommentsAPITestCase(APITestCase):
     """
     databases = ['logs_db', 'blogs_db']
 
-    def setUp(self):
+    def setUp(self) -> None:
         """Настройка тестовых данных для проверки работы API комментариев."""
         self.event_type = EventType.objects.using('logs_db').get(name="comment")
         self.space_type = SpaceType.objects.using('logs_db').get(name="post")
@@ -43,7 +43,7 @@ class CommentsAPITestCase(APITestCase):
             space_id=self.post.id
         )
 
-    def test_comments_api(self):
+    def test_comments_api(self) -> None:
         """
         Проверяет работу API для получения комментариев.
 
@@ -58,7 +58,7 @@ class CommentsAPITestCase(APITestCase):
             {"login": "ChillGuy", "header": "First Post", "author_login": "ChillGuy", "comments_count": 1}
         ])
 
-    def test_get_comments_error_missing_login(self):
+    def test_get_comments_error_missing_login(self) -> None:
         """
         Проверяет ошибку, если параметр 'login' не передан в запросе.
 
@@ -70,7 +70,7 @@ class CommentsAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.data, {'error': 'Login is required'})
 
-    def test_get_comments_error_login(self):
+    def test_get_comments_error_login(self) -> None:
         """
         Проверяет ошибку, если указан неверный логин пользователя.
 
@@ -96,7 +96,7 @@ class GeneralAPITestCase(APITestCase):
 
     databases = ['logs_db', 'blogs_db']
 
-    def setUp(self):
+    def setUp(self) -> None:
         """Настройка тестовых данных для проверки работы API общей активности пользователя."""
         self.login_event = EventType.objects.using('logs_db').get(name="login")
         self.global_space_type = SpaceType.objects.using('logs_db').get(name="global")
@@ -131,7 +131,7 @@ class GeneralAPITestCase(APITestCase):
             space_id=None
         )
 
-    def test_general_api(self):
+    def test_general_api(self) -> None:
         """
         Проверяет работу API для получения общей активности пользователя.
 
@@ -151,7 +151,7 @@ class GeneralAPITestCase(APITestCase):
             }
         ])
 
-    def test_get_general_error_missing_login(self):
+    def test_get_general_error_missing_login(self) -> None:
         """
         Проверяет ошибку, если параметр 'login' не передан в запросе.
 
@@ -163,7 +163,7 @@ class GeneralAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.data, {'error': 'Login is required'})
 
-    def test_get_general_error_invalid_login(self):
+    def test_get_general_error_invalid_login(self) -> None:
         """
         Проверяет ошибку, если указан неверный логин пользователя.
 
@@ -175,7 +175,7 @@ class GeneralAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.data, {'error': 'Login is required'})
 
-    def test_general_api_multiple_entries(self):
+    def test_general_api_multiple_entries(self) -> None:
         """
         Проверяет работу API с несколькими записями для одного пользователя.
 
@@ -231,7 +231,7 @@ class GetDataFromAPITest(TestCase):
     """
 
     @patch("requests.get")
-    def test_successful_api_responses(self, mock_get):
+    def test_successful_api_responses(self, mock_get: Mock) -> None:
         """
         Проверяет корректную обработку успешных ответов API.
 
@@ -251,7 +251,7 @@ class GetDataFromAPITest(TestCase):
         ])
 
     @patch("requests.get")
-    def test_api_failure(self, mock_get):
+    def test_api_failure(self, mock_get: Mock) -> None:
         """
         Проверяет обработку ошибок API.
 
@@ -266,7 +266,7 @@ class GetDataFromAPITest(TestCase):
         self.assertEqual(general, [])
 
     @patch("requests.get")
-    def test_api_partial_failure(self, mock_get):
+    def test_api_partial_failure(self, mock_get: Mock) -> None:
         """
         Проверяет обработку частичного сбоя API.
 
@@ -287,7 +287,7 @@ class GetDataFromAPITest(TestCase):
         ])
         self.assertEqual(general, [])
 
-    def mock_response(self, status_code, json_data):
+    def mock_response(self, status_code: int, json_data: list[dict]) -> Mock:
         """
         Мокирует ответ API.
 
@@ -307,7 +307,7 @@ class DownloadCSVTestCase(APITestCase):
     """
 
     @patch("UserActions.views.get_data_from_api")
-    def test_download_csv_successful(self, mock_get_data_from_api):
+    def test_download_csv_successful(self, mock_get_data_from_api: Mock) -> None:
         """
         Проверяет корректную обработку успешных запросов для скачивания CSV-файла.
 
@@ -330,7 +330,7 @@ class DownloadCSVTestCase(APITestCase):
         self.assertEqual(response.content.decode(), expected_csv)
 
     @patch("UserActions.views.get_data_from_api")
-    def test_download_csv_invalid_dataset_type(self, mock_get_data_from_api):
+    def test_download_csv_invalid_dataset_type(self, mock_get_data_from_api: Mock) -> None:
         """
         Тестирует ошибку, если тип данных для скачивания неверен.
 
@@ -348,13 +348,4 @@ class DownloadCSVTestCase(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def mock_response(self, status_code, json_data):
-        """
-        Мокирует ответ API.
 
-        Создает мок-объект с заданным статусом и данными.
-        """
-        mock_resp = Mock()
-        mock_resp.status_code = status_code
-        mock_resp.json.return_value = json_data
-        return mock_resp

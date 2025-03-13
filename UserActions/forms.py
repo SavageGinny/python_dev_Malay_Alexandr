@@ -22,7 +22,7 @@ class InputUserLogin(forms.Form):
         widget=Select2Widget(attrs={'class': 'form-select', 'data-placeholder': 'Введите или выберите логин'})
     )
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         """
         Инициализация формы с заполнением выбора логинов.
 
@@ -36,7 +36,7 @@ class InputUserLogin(forms.Form):
         self.fields["input_login"].choices = self.get_user_choices()
 
     @staticmethod
-    def get_user_choices():
+    def get_user_choices() -> list[tuple[str, str]]:
         """
         Получение списка логинов всех пользователей.
 

@@ -10,17 +10,17 @@ class SpaceTypeTest(TestCase):
     """
     databases = ['logs_db']
 
-    def setUp(self):
+    def setUp(self) -> None:
         """Создаёт тестовый тип пространства."""
         self.space_type = SpaceType.objects.using('logs_db').create(name='glo')
 
-    def test_space_type_creation(self):
+    def test_space_type_creation(self) -> None:
         """Проверяет создание типа пространства."""
         space = SpaceType.objects.using('logs_db').get(name='glo')
         self.assertEqual(space.name, 'glo')
         self.assertTrue(SpaceType.objects.using('logs_db').filter(name='glo').exists())
 
-    def test_unique_space_type(self):
+    def test_unique_space_type(self) -> None:
         """Проверяет, что нельзя создать два типа пространства с одинаковым названием."""
         with self.assertRaises(Exception):
             SpaceType.objects.using('logs_db').create(name='glo')
@@ -34,17 +34,17 @@ class EventTypeTest(TestCase):
     """
     databases = ['logs_db']
 
-    def setUp(self):
+    def setUp(self) -> None:
         """Создаёт тестовый тип события."""
         self.event_type = EventType.objects.using('logs_db').create(name='log')
 
-    def test_event_type_creation(self):
+    def test_event_type_creation(self) -> None:
         """Проверяет создание типа события."""
         event = EventType.objects.using('logs_db').get(name='log')
         self.assertEqual(event.name, 'log')
         self.assertTrue(EventType.objects.using('logs_db').filter(name='log').exists())
 
-    def test_unique_event_type(self):
+    def test_unique_event_type(self) -> None:
         """Проверяет, что нельзя создать два типа события с одинаковым названием."""
         with self.assertRaises(Exception):
             EventType.objects.using('logs_db').create(name='log')
@@ -58,7 +58,7 @@ class LogTest(TestCase):
     """
     databases = ['logs_db']
 
-    def setUp(self):
+    def setUp(self) -> None:
         """Создаёт тестовые данные для логов."""
         self.space_type = SpaceType.objects.using('logs_db').create(name='poster')
         self.event_type = EventType.objects.using('logs_db').create(name='commenter')
@@ -70,7 +70,7 @@ class LogTest(TestCase):
             space_id=52
         )
 
-    def test_log_creation(self):
+    def test_log_creation(self) -> None:
         """Проверяет создание лога."""
         log = Log.objects.using('logs_db').get(user_id=7, space_id=52)
         self.assertEqual(log.space_type, self.space_type)
@@ -79,10 +79,10 @@ class LogTest(TestCase):
         self.assertEqual(log.space_id, 52)
         self.assertTrue(Log.objects.using('logs_db').filter(user_id=7, space_id=52).exists())
 
-    def test_log_space_type_relation(self):
+    def test_log_space_type_relation(self) -> None:
         """Проверяет связь лога с типом пространства."""
         self.assertEqual(self.log.space_type.name, 'poster')
 
-    def test_log_event_type_relation(self):
+    def test_log_event_type_relation(self) -> None:
         """Проверяет связь лога с типом события."""
         self.assertEqual(self.log.event_type.name, 'commenter')
