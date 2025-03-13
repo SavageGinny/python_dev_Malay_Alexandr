@@ -34,15 +34,4 @@ class UserActivitySerializer(serializers.Serializer):
     logouts = serializers.IntegerField()
     blog_actions_count = serializers.IntegerField()
 
-class UserActionsSerializer(serializers.Serializer):
-    """
-    Сериализатор для данных о действиях пользователя, включая множественные активности.
 
-    Этот сериализатор используется для представления данных пользователя и списка его активностей в блоге.
-
-    Поля:
-        user_login (str): Логин пользователя.
-        activities (list): Список активностей пользователя, каждая из которых представлена через `UserActivitySerializer`.
-    """
-    user_login = serializers.CharField()
-    activities = UserActivitySerializer(many=True)
