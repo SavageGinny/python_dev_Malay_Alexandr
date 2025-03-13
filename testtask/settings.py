@@ -84,28 +84,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-        'TEST': {
-            'NAME': BASE_DIR / 'test_db.sqlite3',
-            'DEPENDENCIES': [],
-        },
     },
     'blogs_db': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'blogs_db.sqlite3',
-        'TEST': {
-            'NAME': BASE_DIR / 'test_blogs_db.sqlite3',
-            'DEPENDENCIES': [],
-            'MIRROR': 'blogs_db',
-        },
     },
     'logs_db': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'logs_db.sqlite3',
-        'TEST': {
-            'NAME': BASE_DIR / 'test_logs_db.sqlite3',
-            'DEPENDENCIES': [],
-            'MIRROR': 'logs_db',
-        },
     }
 }
 
@@ -151,9 +137,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DATABASE_ROUTERS = ['UserActions.db_routers.BlogsDBRouter', 'UserActions.db_routers.LogsDBRouter']
+DATABASE_ROUTERS = ['blogs.db_router.BlogsDBRouter', 'logs.db_router.LogsDBRouter']
 
 REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
@@ -161,4 +149,3 @@ REST_FRAMEWORK = {
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
-

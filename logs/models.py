@@ -65,10 +65,10 @@ class Log(models.Model):
         managed (bool): Указывает, что эта модель не управляется Django (не создается и не мигрируется автоматически).
     """
     datetime = models.DateTimeField()
-    user_id = models.IntegerField()
-    space_type = models.ForeignKey(SpaceType, on_delete=models.CASCADE)
-    event_type = models.ForeignKey(EventType, on_delete=models.CASCADE)
-    space_id = models.IntegerField()
+    user_id = models.IntegerField()  # Пользователь из другой БД
+    space_type = models.ForeignKey(SpaceType, on_delete=models.CASCADE)  # Тип
+    event_type = models.ForeignKey(EventType, on_delete=models.CASCADE)  # Тип события
+    space_id = models.IntegerField()  # id пространства, в котором было совершено действие
 
     class Meta:
         db_table = 'logs'

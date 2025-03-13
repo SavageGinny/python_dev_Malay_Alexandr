@@ -2,6 +2,7 @@ from django import forms
 from blogs.models import User
 from django_select2.forms import Select2Widget
 
+#Форма для вводы/выбора пользователя, для которых и будет составляться датасет
 class InputUserLogin(forms.Form):
     """
     Форма для ввода или выбора логина пользователя.
@@ -17,7 +18,7 @@ class InputUserLogin(forms.Form):
     """
     input_login = forms.ChoiceField(
         label="Логин Пользователя",
-        choices=[],
+        choices=[],  # Заполняем в __init__
         required=False,
         widget=Select2Widget(attrs={'class': 'form-select', 'data-placeholder': 'Введите или выберите логин'})
     )
