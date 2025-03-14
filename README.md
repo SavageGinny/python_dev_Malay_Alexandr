@@ -8,6 +8,7 @@
 git clone https://github.com/SavageGinny/python_dev_Malay_Alexandr.git
 ```
 ## Запустите docker compose
+Откройте папку с проектом через терминал и запустите данную команду:
 ```
 docker-compose up --build
 ```
