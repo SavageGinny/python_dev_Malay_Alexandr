@@ -43,6 +43,11 @@ http://127.0.0.1:8000/api/comments?login=<userloggin>
 ```
 http://127.0.0.1:8000/api/general?login=<userloggin>
 ```
+## Запуск тестов:
+```
+python manage.py test
+```
+
 # Условие задачи:
 ## 1. Создать две sqlite базы данных (sqlite - опционально, также возможны mysql, postrges) - схемы приложены к заданию.
 ## 2. В одной бд (db1_scheme.png) создать три таблицы - post, author и blog.
