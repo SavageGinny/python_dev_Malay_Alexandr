@@ -146,7 +146,7 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
-
+!pyproject.toml
 #**/migrations/**
 #!**/migrations
 #!**/migrations/__init__.py
