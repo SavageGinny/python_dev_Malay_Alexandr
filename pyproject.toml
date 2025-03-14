@@ -24,4 +24,3 @@ combine-as-imports = true
 known-first-party = ["testtask"]
 
 [tool.ruff.per-file-ignores]
-"settings.py" = ["F403"]
