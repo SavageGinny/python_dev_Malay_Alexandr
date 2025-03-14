@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'logs',
     'blogs',
+    "UserActions",
     "crispy_forms",
     "crispy_bootstrap5",
     "django_select2",
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'testtask.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'UserActions/templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
