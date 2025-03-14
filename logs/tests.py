@@ -1,6 +1,8 @@
 from django.test import TestCase
-from .models import *
 from django.utils.timezone import now
+
+from .models import EventType, Log, SpaceType
+
 
 class SpaceTypeTest(TestCase):
     """

@@ -1,9 +1,15 @@
+from unittest.mock import Mock, patch
+
 from django.test import TestCase
-from rest_framework.test import APITestCase
 from django.urls import reverse
-from unittest.mock import patch, Mock
 from django.utils.timezone import now, timedelta
-from .views import *
+from rest_framework import status
+from rest_framework.test import APITestCase
+
+from blogs.models import Blog, Post, User
+from logs.models import EventType, Log, SpaceType
+
+from .views import comments, download_csv, general, get_data_from_api
 
 
 class CommentsAPITestCase(APITestCase):

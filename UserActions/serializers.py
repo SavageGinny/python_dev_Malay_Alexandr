@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+
 class CommentsSerializer(serializers.Serializer):
     """
     Сериализатор для данных о комментариях пользователя.

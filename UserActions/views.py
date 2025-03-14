@@ -1,18 +1,20 @@
+import csv
+
+import requests
+from django.db.models import Count, Q
+from django.db.models.functions import TruncDate
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import render
+from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework import status
-from django.db.models.functions import TruncDate
-from django.db.models import Count, Q
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.http import HttpRequest
-import csv
-import requests
-from .forms import *
-from .serializers import *
-from blogs.models import *
-from logs.models import *
+
+from blogs.models import Post, User
+from logs.models import EventType, Log, SpaceType
+
+from .forms import InputUserLogin
+from .serializers import CommentsSerializer, UserActivitySerializer
 
 API_COMMENT_URL = "http://127.0.0.1:8000/api/comments"
 API_GENERAL_URL = "http://127.0.0.1:8000/api/general"

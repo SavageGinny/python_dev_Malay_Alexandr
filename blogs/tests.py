@@ -1,5 +1,6 @@
 from django.test import TestCase
-from .models import *
+
+from .models import Blog, Post, User
 
 
 class UserTest(TestCase):

@@ -9,6 +9,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /app/
 
+RUN dos2unix entrypoint.sh
 COPY entrypoint.sh /app/
 
 RUN chmod +x ./entrypoint.sh

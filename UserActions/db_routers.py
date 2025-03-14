@@ -1,5 +1,6 @@
 from django.db.models import Model
 
+
 class BlogsDBRouter:
     """
     Маршрутизатор для базы данных 'blogs_db'.

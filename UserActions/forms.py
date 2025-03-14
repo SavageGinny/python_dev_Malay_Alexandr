@@ -1,6 +1,8 @@
 from django import forms
-from blogs.models import User
 from django_select2.forms import Select2Widget
+
+from blogs.models import User
+
 
 class InputUserLogin(forms.Form):
     """

@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import user_data_view, comments, general, download_csv
+
+from .views import comments, download_csv, general, user_data_view
 
 urlpatterns = [
     path('', user_data_view),

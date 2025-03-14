@@ -1,6 +1,7 @@
 from django.contrib import admin
-from logs.models import SpaceType, EventType, Log
-from blogs.models import User, Blog, Post
+
+from blogs.models import Blog, Post, User
+from logs.models import EventType, Log, SpaceType
 
 admin.site.register(User)
 admin.site.register(Blog)
